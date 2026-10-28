@@ -1,0 +1,7 @@
+pytest
+pytest-cov
+ruff
+radon
+vulture
+mypy
+pip-audit

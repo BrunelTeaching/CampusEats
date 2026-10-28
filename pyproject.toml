@@ -1,0 +1,16 @@
+[project]
+name = "campuseats"
+version = "0.1.0"
+description = "Shared codebase for the CS3616 refactoring coursework."
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.coverage.run]
+branch = true
+source = ["campuseats"]
+
+[tool.mypy]
+ignore_missing_imports = true

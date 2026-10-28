@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS3616 Coursework — Checklist</title>
+<style>
+  :root{
+    --accent:#4f46e5;
+    --accent-soft:#eef2ff;
+    --ink:#1f2937;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --code-bg:#0f172a;
+    --code-ink:#e2e8f0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    line-height:1.65;
+    max-width:860px;
+    margin:0 auto;
+    padding:48px 24px 96px;
+    background:#fff;
+  }
+  h1{
+    font-size:2rem;
+    line-height:1.2;
+    margin:0 0 .25em;
+    padding-bottom:.4em;
+    border-bottom:3px solid var(--accent);
+  }
+  h3{font-size:1.1rem;margin:1.4em 0 .4em;}
+  p{margin:.6em 0;}
+  a{color:var(--accent);}
+  code{
+    background:var(--accent-soft);
+    color:#3730a3;
+    padding:.12em .4em;
+    border-radius:4px;
+    font-family:"SF Mono",Menlo,Consolas,monospace;
+    font-size:.88em;
+  }
+  pre{
+    background:var(--code-bg);
+    color:var(--code-ink);
+    padding:16px 18px;
+    border-radius:10px;
+    overflow-x:auto;
+    font-size:.86rem;
+    line-height:1.5;
+  }
+  pre code{background:none;color:inherit;padding:0;font-size:inherit;}
+  table{border-collapse:collapse;width:100%;margin:1em 0;font-size:.94rem;}
+  th,td{border:1px solid var(--border);padding:9px 12px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-soft);color:#3730a3;}
+  tr:nth-child(even) td{background:#fafafa;}
+  blockquote{
+    margin:1.1em 0;
+    padding:12px 18px;
+    background:#fffbeb;
+    border-left:4px solid #f59e0b;
+    border-radius:0 8px 8px 0;
+  }
+  blockquote p{margin:.2em 0;}
+  ul,ol{margin:.6em 0;padding-left:1.4em;}
+  li{margin:.3em 0;}
+  .meta{
+    background:var(--accent-soft);
+    border-radius:10px;
+    padding:14px 18px;
+    margin:1.2em 0;
+    font-size:.95rem;
+  }
+  .meta p{margin:.2em 0;}
+  .note{color:var(--muted);font-size:.9rem;}
+
+  /* Collapsible sections */
+  details{
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin:14px 0;
+    padding:0 22px;
+    background:#fff;
+    transition:box-shadow .15s ease;
+  }
+  details[open]{box-shadow:0 2px 14px rgba(79,70,229,.08);padding-bottom:18px;}
+  summary{
+    cursor:pointer;
+    list-style:none;
+    padding:18px 0;
+    font-size:1.3rem;
+    font-weight:700;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::before{
+    content:"▸";
+    font-size:.9rem;
+    color:var(--muted);
+    transition:transform .15s ease;
+  }
+  details[open] summary::before{transform:rotate(90deg);}
+  .step-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:30px;height:30px;border-radius:50%;
+    background:var(--accent);color:#fff;font-size:1rem;flex:0 0 auto;
+  }
+  details.sub{border-color:var(--border);background:#fafafa;margin:10px 0;padding:0 16px;}
+  details.sub summary{font-size:.95rem;font-weight:600;color:var(--ink);padding:12px 0;}
+  details.sub summary::before{content:"＋";font-weight:700;}
+  details.sub[open] summary::before{content:"－";transform:none;}
+  details.sub[open]{box-shadow:none;padding-bottom:14px;}
+
+  .badge{
+    display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;
+    text-transform:uppercase;padding:3px 9px;border-radius:999px;vertical-align:middle;
+  }
+  .badge.req{background:#dcfce7;color:#166534;}
+  .badge.ref{background:#e0e7ff;color:#3730a3;}
+  .badge.start{background:#dbeafe;color:#1e40af;}
+  .badge.submit{background:#fae8ff;color:#86198f;}
+  summary .badge{margin-left:auto;font-size:.62rem;}
+
+  /* Checklist items */
+  ul.check{list-style:none;padding-left:0;}
+  ul.check li{position:relative;padding-left:30px;margin:.5em 0;}
+  ul.check li::before{
+    content:"☐";position:absolute;left:0;top:-1px;
+    font-size:1.1rem;color:var(--accent);
+  }
+  ul.check li strong{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<h1>CS3616 Coursework — Checklist</h1>
+
+<!-- ============ BEFORE YOU START ============ -->
+<details open>
+  <summary><span class="step-num">0</span> Setup — get your file and your agent <span class="badge start">Before you start</span></summary>
+
+  <p>Do all of this once, before you touch any code. You are aiming to reach a known-good starting
+  line: the suite green, the tools installed, your file identified, and an agent that responds.</p>
+
+  <ul class="check">
+    <li><strong>Clone the repo and work in your local clone.</strong> You never push — the local
+      <code>.git</code> folder is your evidence trail.</li>
+    <li><strong>Create the environment and confirm the suite is green</strong> on the untouched code:
+      <pre><code>python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+pytest -q          # must pass before you change anything</code></pre></li>
+    <li><strong>Find your assigned file.</strong> It is assigned by your student registration number
+      (mod 6) — see the
+      <a href="https://brightspace.brunel.ac.uk/d2l/le/lessons/57045/topics/2307881">allocation page on
+      Brightspace</a>. You do <em>not</em> choose it. Open your file and read it before prompting anything.</li>
+    <li><strong>Have one agent working.</strong> Use the one you set up in the Week 2 lab:</li>
+  </ul>
+
+  <details class="sub">
+    <summary>Agent A — GitHub Copilot</summary>
+    <p>Free, with Copilot Pro free for students via the GitHub Student Developer Pack (verify with
+    your Brunel email at <code>github.com/education</code>). Use it in VS Code <strong>Agent mode</strong>,
+    or as a terminal agent:</p>
+    <pre><code>npm install -g @github/copilot
+copilot</code></pre>
+  </details>
+
+  <details class="sub">
+    <summary>Agent B — OpenCode + a free Gemini Flash model</summary>
+    <p>Install OpenCode, then inside it run <code>/models</code>, pick a <strong>Google Gemini Flash</strong>
+    model, and paste a free API key from <code>aistudio.google.com/apikey</code>.</p>
+  </details>
+
+  <blockquote>
+    <p><strong>Export every session as you go.</strong> Each time you finish a working session with your
+    agent, export the transcript and save it in the <code>agent_logs/</code> folder — see
+    <strong>step 4</strong> for how. Do this after <em>every</em> session, not at the end of the
+    coursework: these logs are required evidence and cannot be reconstructed later.</p>
+  </blockquote>
+
+  <blockquote>
+    <p><strong>On model tier.</strong> If you use Claude Code or Codex, pick a <strong>lower-tier</strong>
+    model on purpose — its weaker output makes exactly the mistakes you are here to catch. Top-tier
+    models <em>overstretch</em> (fixing a bug you were told to leave, refactoring past the plan), which
+    is harder to spot because it looks polished. Either way, you own every change the agent makes.</p>
+  </blockquote>
+</details>
+
+<!-- ============ DIAGNOSE ============ -->
+<details>
+  <summary><span class="step-num">1</span> Diagnose — run the tools <span class="badge req">Compulsory</span></summary>
+
+  <p>Run the three core tools (<code>ruff</code>, <code>radon</code>, <code>pytest-cov</code>) on your
+  assigned file — you already know the commands from the labs. The one thing to get right here is
+  <strong>saving each run into a <code>before/</code> folder</strong>: the saved file, not the number you
+  type into the table later, is what a marker re-runs. Redirect the output with <code>&gt;</code>, and
+  add <code>2&gt;&amp;1</code> so findings are captured even when the tool exits non-zero. For example:</p>
+
+  <pre><code>mkdir before
+ruff check campuseats/your_file.py > before/ruff.txt 2>&1</code></pre>
+
+  <p>Do the same for the other two tools, and later into an <code>after/</code> folder once you have
+  refactored.</p>
+
+  <ul class="check">
+    <li><strong>Write a short diagnosis of your file</strong> — this is the raw material for §2 of your
+      report. Keep it to a few sentences:
+      <ul>
+        <li><strong>one sentence</strong> on what the tool output flags;</li>
+        <li><strong>two or three sentences</strong> of your own observations from reading the file;</li>
+        <li><strong>one or two sentences</strong> on what your LLM interactions turned up, and the prompts you used (if any).</li>
+      </ul></li>
+  </ul>
+</details>
+
+<!-- ============ REFACTOR ============ -->
+<details>
+  <summary><span class="step-num">2</span> Refactor — direct the agent, iteratively <span class="badge req">Compulsory</span></summary>
+
+  <p>This is the core of the task and it is <strong>iterative</strong>: prompt, read the result,
+  re-run a tool, correct the agent, commit, repeat. You are steering — not accepting the first thing
+  it writes.</p>
+
+  <ul class="check">
+    <li><strong>Read your file and the relevant lecture</strong> (SOLID / SRP, DRY, coupling &amp;
+      cohesion, clean naming, dead code). Your §2 analysis must name real principles, not symptoms.</li>
+    <li><strong>Design your prompts from the evidence</strong> in step 1 <em>and</em> your own reading
+      of the file — e.g. "radon reports complexity 12 in <code>priced_order</code>; extract the member
+      and promo blocks into named functions, keep behaviour identical."</li>
+    <li><strong>Aim for 3 distinct, named refactorings</strong> (Extract Method, Remove Duplication,
+      Rename, Remove Dead Code…), each traceable to one line of your plan. Up to 4 is fine; fewer only
+      if staff-agreed.</li>
+    <li><strong>Commit to git after <em>every</em> refactoring</strong> — one commit per change, so your
+      history lines up with your plan item by item. This is required evidence: your <code>.git</code> folder
+      must show at least one commit per refactoring (so two or more in total). Do it as you go — you cannot
+      reconstruct it afterwards.</li>
+    <li><strong>Stay behaviour-preserving.</strong> The suite must pass, asserting the same things,
+      after every change. Found a real bug? <strong>Note it in §2 and leave it alone</strong> — this is
+      refactoring, not bug-fixing.</li>
+    <li><strong>Catch the agent.</strong> You need at least one genuine mistake in §3 — and the agent
+      will not hand it to you. The hints below are where they hide.</li>
+  </ul>
+
+  <details class="sub">
+    <summary>How to catch the agent out — where mistakes hide</summary>
+    <ul class="check">
+      <li><strong>Inspect the diff, not just the numbers.</strong> Some mistakes never show up in a tool
+        count: a warning "fixed" by adding <code># noqa</code> (silencing it, not fixing it), a function
+        quietly deleted, behaviour subtly changed. Read <code>git diff</code> line by line.</li>
+      <li><strong>Run <code>mypy</code> on your file</strong> (before and after). A classic agent move is
+        "adding type hints" that actually introduce <em>new</em> type errors — and because mypy is easy
+        to skip, nobody notices. The error count should go down, not up.</li>
+      <li><strong>Re-run every tool yourself, after refactoring.</strong> Do not trust the numbers the
+        agent reports — it frequently misreports them or never re-ran the tool at all. The saved
+        <code>after/</code> file must be <em>your</em> run.</li>
+      <li><strong>Run the full test suite</strong> (<code>pytest</code>), not just your own file's tests.
+        Agents often verify a subset and miss breakage elsewhere.</li>
+      <li><strong>Verify "dead code removed" is really dead.</strong> Search the codebase for callers
+        (<code>grep -rn "name" .</code>) before trusting any deletion — something may still use it.</li>
+      <li><strong>Ask why each metric moved.</strong> Coverage can rise just because code was
+        <em>deleted</em>; a complexity number can fall because logic was dropped, not restructured. A
+        number that improved for the wrong reason is a finding, not a win.</li>
+    </ul>
+  </details>
+</details>
+
+<!-- ============ REPORT ============ -->
+<details>
+  <summary><span class="step-num">3</span> Re-measure &amp; complete the report <span class="badge req">Compulsory</span></summary>
+
+  <ul class="check">
+    <li><strong>Capture the <code>after/</code> numbers.</strong> Re-run the <em>same</em> tools into
+      <code>after/</code>. At least one number must show a genuine, explained improvement — and
+      <code>pytest</code> must still say all tests passed.</li>
+    <li><strong>Fill in <code>Submission.docx</code></strong> (the Word template — keep it to one page):
+      <ul>
+        <li><strong>§1 Tools</strong> — the before/after table, each row pointing at its evidence file.</li>
+        <li><strong>§2 Analysis</strong> — the named principles your file breaks and the refactorings you made.</li>
+        <li><strong>§3 Reflection</strong> — how the agent did, with <strong>at least one real mistake</strong>
+          and the evidence file that proves it.</li>
+      </ul></li>
+    <li><strong>Record the agent and model</strong> you used at the top of the form.</li>
+  </ul>
+
+  <blockquote>
+    <p><strong>The bar to hold yourself to:</strong> could you convince your boss this refactored file is
+    safe to ship to production? Your evidence is exactly what goes in the zip — the <em>full</em> test
+    suite green (behaviour unchanged), the diff you have read line by line, every tool re-run with its
+    before/after numbers, and any bug you found logged rather than quietly fixed. If you can't make that
+    argument, the refactor isn't done.</p>
+  </blockquote>
+</details>
+
+<!-- ============ EXPORT / SUBMIT ============ -->
+<details>
+  <summary><span class="step-num">4</span> Export, archive &amp; submit <span class="badge submit">Before you submit</span></summary>
+
+  <p>Everything heavy goes in the zip, not in the report. Before you zip, walk the checklist below and
+  then run the checker. If you have set up everything correctly, zipping your working folder should be
+  enough.</p>
+
+  <details class="sub">
+    <summary>What must be in your zip</summary>
+    <ul class="check">
+      <li><strong>The completed report</strong> — <code>Submission.docx</code>.</li>
+      <li><strong>Your refactored file / class</strong> — the diff, or the full changed file(s).</li>
+      <li><strong>Your <code>before/</code> and <code>after/</code> folders</strong> of tool output.</li>
+      <li><strong>Your LLM session transcript</strong> — exported into the <code>agent_logs/</code> folder
+        (see "How to export your transcript" below).</li>
+      <li><strong>The local <code>.git</code> folder</strong> — the folder itself, showing one commit per
+        refactoring (at least 2 in total). Do not push it anywhere.</li>
+    </ul>
+  </details>
+
+  <details class="sub">
+    <summary>How to export your transcript into <code>agent_logs/</code></summary>
+    <p>Export your whole agent session and save it into the <code>agent_logs/</code> folder before you zip.
+    Do this at the end of your session — do not rely on memory.</p>
+    <p><strong>GitHub Copilot (VS Code):</strong> open the Command Palette (<code>Cmd/Ctrl+Shift+P</code>),
+    run <strong>“Chat: Export Chat…”</strong>, and save the <code>.json</code> into <code>agent_logs/</code>.
+    (For the terminal <code>copilot</code> agent, copy the session text into <code>agent_logs/copilot.txt</code>.)</p>
+    <p><strong>OpenCode + Gemini Flash:</strong> run <code>opencode export</code> and save the output into
+    <code>agent_logs/</code>. Sessions are stored under <code>~/.local/share/opencode/</code> — run
+    <code>opencode db path</code> if you need to locate them.</p>
+  </details>
+
+  <ul class="check">
+    <li><strong>Run the checker</strong> inside your folder to confirm nothing is missing:
+      <pre><code>bash check_submission.sh</code></pre></li>
+    <li><strong>Zip and upload</strong> one file to WISEflow, named with your registration number
+      (e.g. <code>CS3616_0612345.zip</code>). Confirm it uploaded fully with no errors — that is your
+      responsibility.</li>
+  </ul>
+
+  <blockquote>
+    <p><strong>The integrity line.</strong> Directed AI use is required and expected. What counts as
+    misconduct here is <em>misrepresenting the session</em>: claiming a catch with no evidence file,
+    overstating an improvement the numbers do not support, or presenting a struggling session as if it
+    went smoothly. Declare your tool and model, and submit the transcript and git history as evidence.</p>
+  </blockquote>
+</details>
+
+</body>
+</html>

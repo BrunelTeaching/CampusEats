@@ -1,0 +1,12 @@
+# Reproducible lint configuration for the coursework.
+# A broad-but-standard rule set so `ruff check` surfaces real issues on the
+# target modules. These are the same families you used in the labs.
+
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = ["E", "F", "W", "N", "B", "SIM", "UP", "C90", "RET", "PLR2004"]
+
+[lint.mccabe]
+max-complexity = 8
