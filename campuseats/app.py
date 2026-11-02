@@ -6,6 +6,7 @@ is part of the dependency-check step in the coursework.
 """
 
 from campuseats.cart import Cart
+from campuseats.delivery import delivery_fee, estimate_eta
 from campuseats.inventory import process_sale
 from campuseats.loyalty import points_for, tier
 from campuseats.menu import getPrice
@@ -34,3 +35,9 @@ def quick_sale(item):
     note = process_sale(item, 1)
     receipt = short_receipt(getPrice(item))
     return note, receipt
+
+
+def plan_delivery(street, city, postcode, distance_km, express=False, member=False):
+    fee = delivery_fee(street, city, postcode, distance_km, express=express, member=member)
+    eta = estimate_eta(street, city, postcode, distance_km, express=express)
+    return {"fee": fee, "eta": eta}
