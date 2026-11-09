@@ -54,6 +54,6 @@ which of their findings actually matter for your module is part of the task.
 three core tools are required.)
 
 - **`CHECKLIST.html`** — the before-you-start → before-you-submit checklist. Start here.
-- **`Submission.docx`** — the one-page Word report you fill in and hand back.
+- **`Submission.docx`** — the Word report you fill in and hand back.
 
 Full requirements and marking criteria are in the Coursework Brief on Brightspace.
