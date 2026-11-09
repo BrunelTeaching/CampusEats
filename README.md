@@ -36,7 +36,7 @@ tests/            # the passing suite (thin coverage on the modules above)
 
 ## Your assigned module
 
-Your module is assigned by **student ID mod 7** — you do not choose it:
+Your module is assigned by **student ID mod 6** — you do not choose it:
 
 | ID mod 7 | Module |
 |---|---|
@@ -46,7 +46,6 @@ Your module is assigned by **student ID mod 7** — you do not choose it:
 | 3 | `campuseats/loyalty.py` |
 | 4 | `campuseats/menu.py` |
 | 5 | `campuseats/inventory.py` |
-| 6 | `campuseats/delivery.py` |
 
 Run the **three core tools** on your module — `ruff`, `radon` and `pytest-cov` —
 **before and after** your refactoring, and save each tool's output. Working out
